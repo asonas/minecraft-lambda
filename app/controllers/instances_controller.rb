@@ -1,9 +1,12 @@
 require 'net/http'
 require 'json'
 class InstancesController < ApplicationController
-  def create
-    notify_slack
+  def index
+    p params
+  end
 
+  def create
+    notify_slack("create")
     # instance_id
     # execute shell
     # return ip_address
@@ -11,10 +14,15 @@ class InstancesController < ApplicationController
     render plain: :ok
   end
 
-  def notify_slack
+  def destroy
+    notify_slack("destroy")
+    render plain: :ok
+  end
+
+  def notify_slack(message)
     p ENV["SLACK_WEBHOOK_URL"]
     uri = URI.parse(ENV["SLACK_WEBHOOK_URL"])
-    params = { text: "test from lambda" }
+    params = { text: message }
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     http.start do
