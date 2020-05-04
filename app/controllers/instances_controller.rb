@@ -3,6 +3,15 @@ require 'json'
 class InstancesController < ApplicationController
   def index
     p params
+    case params["text"]
+    when "create"
+      create
+    when "destroy"
+      destroy
+    when "upload"
+      upload
+    end
+    render plain: :ok
   end
 
   def create
@@ -11,12 +20,10 @@ class InstancesController < ApplicationController
     # execute shell
     # return ip_address
     #
-    render plain: :ok
   end
 
   def destroy
     notify_slack("destroy")
-    render plain: :ok
   end
 
   def notify_slack(message)
