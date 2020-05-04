@@ -1,3 +1,3 @@
 Jets.application.routes.draw do
-  root "instances#index"
+  post "/", to: "instances#index"
 end
