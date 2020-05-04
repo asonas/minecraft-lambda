@@ -63,6 +63,9 @@ GEM
     aws-sdk-dynamodb (1.45.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
+    aws-sdk-ec2 (1.154.0)
+      aws-sdk-core (~> 3, >= 3.71.0)
+      aws-sigv4 (~> 1.1)
     aws-sdk-kinesis (1.21.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
@@ -210,6 +213,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk-ec2
   jets
   launchy
   puma

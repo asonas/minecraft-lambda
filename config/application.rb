@@ -18,6 +18,7 @@ Jets.application.configure do
   # config.function.timeout = 30 # defaults to 30
   # config.function.role = "arn:aws:iam::#{Jets.aws.account}:role/service-role/pre-created"
   # config.function.memory_size = 1536
+  config.function.role = "arn:aws:iam::282782318939:instance-profile/StartAndStopEc2"
 
   # config.api.endpoint_type = 'PRIVATE' # Default is 'EDGE' (https://docs.aws.amazon.com/apigateway/api-reference/link-relation/restapi-create/#endpointConfiguration)
 
