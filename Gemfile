@@ -7,6 +7,7 @@ group :development, :test do
   gem 'shotgun'
   gem 'rack'
   gem 'puma'
+  gem 'pry'
 end
 
 group :test do
