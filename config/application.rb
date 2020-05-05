@@ -18,7 +18,25 @@ Jets.application.configure do
   # config.function.timeout = 30 # defaults to 30
   # config.function.role = "arn:aws:iam::#{Jets.aws.account}:role/service-role/pre-created"
   # config.function.memory_size = 1536
-  config.function.role = "arn:aws:iam::282782318939:role/StartAndStopEc2"
+
+  config.iam_policy = {
+    action: [
+      "ec2:StartInstances",
+      "ec2:StopInstances",
+      "ec2:Describe*",
+    ],
+    effect: "Allow",
+    resource: "*",
+  },
+  {
+    action: [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
+    ],
+    effect: "Allow",
+    resource: "arn:aws:logs:*:*:*",
+  }
 
   # config.api.endpoint_type = 'PRIVATE' # Default is 'EDGE' (https://docs.aws.amazon.com/apigateway/api-reference/link-relation/restapi-create/#endpointConfiguration)
 
