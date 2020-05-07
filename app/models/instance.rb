@@ -3,12 +3,10 @@ class Instance
   MINECRAFT_PORT = "25565"
 
   def self.start
-    p "start!!!!!!!!!!!!!!!!!!!!!!"
     new.start
   end
 
   def self.stop
-    p "stop!!!!!!!!!!!!!!!!!!!!!"
     new.stop
   end
 
@@ -27,15 +25,15 @@ class Instance
     case @instance.state.code
       when 16 # started
         ip_address = @instance.network_interfaces.first.data.association&.public_ip
-        "#{INSTANCE_ID} is already started. IP Address is `#{ip_address}:#{MINECRAFT_PORT}`"
+        ":hammer_and_pick: Instance(#{INSTANCE_ID}) is already started. IP Address is `#{ip_address}:#{MINECRAFT_PORT}`"
       when 48 # terminated
-        "#{INSTANCE_ID} is terminated, so you cannot start it"
+        ":no_good_woman: Instance#{INSTANCE_ID} is terminated, so you cannot start it"
       else
         @instance.start
 
         count = 0
         while true do
-          if count > 20
+          if count > 29
             raise "Error"
           else
             @instance.reload
@@ -47,24 +45,24 @@ class Instance
             break
           end
         end
-        "#{INSTANCE_ID} is started. IP Address is `#{ip_address}:#{MINECRAFT_PORT}`"
+        ":hammer_and_pick: Created Instance(#{INSTANCE_ID}). IP Address:\n `#{ip_address}:#{MINECRAFT_PORT}`"
     end
   end
 
   def stop
     case @instance.state.code
       when 48
-        "#{INSTANCE_ID} is terminated, so you cannot stop it"
+        ":hammer_and_pick: Instance(#{INSTANCE_ID}) is terminated, so you cannot stop it"
       when 64
-        "#{INSTANCE_ID} is stopping, so will be stopped in a bit"
-      when 89
-        "#{INSTANCE_ID} is already stopped"
+        ":hammer_and_pick: Instance(#{INSTANCE_ID}) is stopping, so will be stopped in a bit"
+      when 80
+        ":hammer_and_pick: Instance(#{INSTANCE_ID}) is already stopped"
       else
         @instance.stop
 
         count = 0
         while true do
-          if @instance.state.code == 89 || @instance.state.code == 48
+          if @instance.state.code == 80 || @instance.state.code == 48
             break
           else
             if count > 25
@@ -74,8 +72,9 @@ class Instance
               sleep 1
             end
           end
+          @instance.reload
         end
-        "#{INSTANCE_ID} has been stopped."
+        ":hammer_and_pick: Instance(#{INSTANCE_ID}) has been stopped."
     end
   end
 end
