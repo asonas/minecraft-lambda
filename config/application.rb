@@ -30,6 +30,14 @@ Jets.application.configure do
   },
   {
     action: [
+      "lambda:InvokeAsync",
+      "lambda:InvokeFunction"
+    ],
+    effect: "Allow",
+    resource: "*"
+  },
+  {
+    action: [
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
       "logs:PutLogEvents"
