@@ -45,7 +45,7 @@ GEM
       rainbow
       thor
       zeitwerk
-    aws-partitions (1.320.0)
+    aws-partitions (1.321.0)
     aws-sdk-apigateway (1.38.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
